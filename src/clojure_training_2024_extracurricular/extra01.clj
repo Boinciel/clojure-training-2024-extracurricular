@@ -3,6 +3,7 @@
 ;; Fill functions in
 
 ;; Run all tests to test
+;; !!! Evaluate the extra01_test.clj before running or it wont find the tests !!!
 ;; (f1 -> Calva: Run Tests for Current Namespace)
 
 ;;;; Maps (hash-maps)
