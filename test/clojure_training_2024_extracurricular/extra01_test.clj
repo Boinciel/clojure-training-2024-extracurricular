@@ -81,7 +81,7 @@
                    {:name "Mister Harry", :gender :male}
                    {:name "Mister Xinqui", :gender :male}
                    {:name "Miss Xiangling", :gender :female}])
-             (seq q8))))
+             (seq (q8)))))
     (testing "q9"
       (is (= (seq [{:name "Bob", :gender :male, :job "Unemployed"}
                    {:name "Harry", :gender :male, :job "Wizard"}
