@@ -1,4 +1,51 @@
+; Running tests for the following namespaces:
+;   clojure-training-2024-extracurricular.extra01
+;   clojure-training-2024-extracurricular.extra01-test
 
+; FAIL in clojure-training-2024-extracurricular.extra01-test/hash-map-tests (extra01_test.clj:47):
+; true q4
+; expected:
+{1001
+ {:name "John",
+  :type :student,
+  :classes #{:art :history :math},
+  :grades [43 65 23 43 56],
+  :total-grade 230},
+ 1002
+ {:name "Ross",
+  :type :student,
+  :classes #{:art :english :math :sports},
+  :grades [75 59 67 34],
+  :total-grade 235},
+ 2003 {:name "Harris", :type :teacher, :salary 50000}}
+
+; actual:
+nil
+
+; FAIL in clojure-training-2024-extracurricular.extra01-test/map-tests (extra01_test.clj:80):
+; true q8
+; expected:
+({:name "Mister Bob", :gender :male}
+ {:name "Mister Harry", :gender :male}
+ {:name "Mister Xinqui", :gender :male}
+ {:name "Miss Xiangling", :gender :female})
+
+; actual:
+nil
+
+; FAIL in clojure-training-2024-extracurricular.extra01-test/map-tests (extra01_test.clj:86):
+; true q9
+; expected:
+({:name "Bob", :gender :male, :job "Unemployed"}
+ {:name "Harry", :gender :male, :job "Wizard"}
+ {:name "Xinqui", :gender :male, :job "Support"}
+ {:name "Xiangling", :gender :female, :job "Chef"})
+
+; actual:
+nil
+
+; FAIL in clojure-training-2024-extracurricular.extra01-test/map-tests (extra01_test.clj:92):
+; true q10
 ; expected:
 ({:name "Venti",
   :hp 110,
@@ -15,121 +62,235 @@
 ; actual:
 nil
 
-; 10 tests finished, problems found. 😭 errors: 0, failures: 1, ns: 1, vars: 2
-
-
-#'clojure-training-2024-extracurricular.extra01/people2
+; 10 tests finished, problems found. 😭 errors: 0, failures: 4, ns: 1, vars: 2
 clj꞉clojure-training-2024-extracurricular.extra01꞉> 
-(map identity people2)
-({:name "Venti", :hp 100, :tasks [:steal :get-drunk :rest], :inventory []}
- {:name "Xinqui", :hp 100, :tasks [:explore :battle :battle :rest :battle], :inventory []}
- {:name "Xiangling", :hp 100, :tasks [:cook :rest :cook :cook], :inventory []})
- 
-(get task-outcomes :steal)
-#function[clojure-training-2024-extracurricular.extra01/fn--11087]
-
-(-> (first people2)
+#'clojure-training-2024-extracurricular.extra01/q4
+clj꞉clojure-training-2024-extracurricular.extra01꞉> 
+#'clojure-training-2024-extracurricular.extra01/q4
+clj꞉clojure-training-2024-extracurricular.extra01꞉> 
+#'clojure-training-2024-extracurricular.extra01/q4
+clj꞉clojure-training-2024-extracurricular.extra01꞉> 
+(false false false)
+clj꞉clojure-training-2024-extracurricular.extra01꞉> 
+; Syntax error compiling at (d:\Projects\Coding\clojure-training-2024-extracurricular\src\clojure_training_2024_extracurricular\extra01.clj:64:8).
+; Unable to resolve symbol: id in this context
+clj꞉clojure-training-2024-extracurricular.extra01꞉> 
+#'clojure-training-2024-extracurricular.extra01/q8
+clj꞉clojure-training-2024-extracurricular.extra01꞉> 
+#'clojure-training-2024-extracurricular.extra01/q8
+clj꞉clojure-training-2024-extracurricular.extra01꞉> 
+; Error printing return value (ClassCastException) at clojure.lang.Numbers/add (Numbers.java:155).
+; class java.lang.String cannot be cast to class java.lang.Number (java.lang.String and java.lang.Number are in module java.base of loader 'bootstrap')
+clj꞉clojure-training-2024-extracurricular.extra01꞉> 
+#'clojure-training-2024-extracurricular.extra01/q8
+clj꞉clojure-training-2024-extracurricular.extra01꞉> 
+({:name "Mister Bob", :gender :male}
+ {:name "Mister Harry", :gender :male}
+ {:name "Mister Xinqui", :gender :male}
+ {:name "Miss Xiangling", :gender :female})
+clj꞉clojure-training-2024-extracurricular.extra01꞉> 
+(get job (get (first people) :name))
+"Bob"
+clj꞉clojure-training-2024-extracurricular.extra01꞉> 
+"Unemployed"
+clj꞉clojure-training-2024-extracurricular.extra01꞉> 
+#'clojure-training-2024-extracurricular.extra01/q9
+clj꞉clojure-training-2024-extracurricular.extra01꞉> 
+#'clojure-training-2024-extracurricular.extra01/q9
+clj꞉clojure-training-2024-extracurricular.extra01꞉> 
+({:name "Bob", :gender :male, :job "Unemployed"}
+ {:name "Harry", :gender :male, :job "Wizard"}
+ {:name "Xinqui", :gender :male, :job "Support"}
+ {:name "Xiangling", :gender :female, :job "Chef"})
+clj꞉clojure-training-2024-extracurricular.extra01꞉> 
+(def example-person (first people2))
+#'clojure-training-2024-extracurricular.extra01/example-person
+clj꞉clojure-training-2024-extracurricular.extra01꞉> 
+(-> example-person
     (get :tasks)
-    (first)
-    )
+    first)
+:tasks
+clj꞉clojure-training-2024-extracurricular.extra01꞉> 
+(get example-person :name)
 
-(get task-outcomes (-> (first people2)
-                       (get :tasks)
-                       (first)))
-
-(update-in [character :tasks]  (rest (-> (character)
-                                         (get :tasks))))
-(-> character)
-
-
-(map get-task-function people2)
-
-#'clojure-training-2024-extracurricular.extra01/eliminate-task
+; Execution error (IllegalArgumentException) at clojure-training-2024-extracurricular.extra01/eval12547 (form-init11024214792108120588.clj:110).
+; Don't know how to create ISeq from: clojure.lang.Keyword
 clj꞉clojure-training-2024-extracurricular.extra01꞉> 
-{:name "Venti", :hp 100, :tasks [:get-drunk :rest], :inventory []}
+[:steal :get-drunk :rest]
 clj꞉clojure-training-2024-extracurricular.extra01꞉> 
-
-(defn do-character-tasks [character]
-  (loop [character-being character]
-    (if (get-task-function character-being)
-      (recur (-> character-being
-                 (get-task-function)
-                 (eliminate-task)))
-      character-being)))#'clojure-training-2024-extracurricular.extra01/do-character-tasks
+:steal
 clj꞉clojure-training-2024-extracurricular.extra01꞉> 
-; Execution error (ClassCastException) at clojure-training-2024-extracurricular.extra01/eliminate-task (form-init11024214792108120588.clj:249).
-; class clojure_training_2024_extracurricular.extra01$fn__11087 cannot be cast to class clojure.lang.Associative (clojure_training_2024_extracurricular.extra01$fn__11087 is in unnamed module of loader clojure.lang.DynamicClassLoader @7f5be37d; clojure.lang.Associative is in unnamed module of loader 'app')
+#'clojure-training-2024-extracurricular.extra01/get-task
 clj꞉clojure-training-2024-extracurricular.extra01꞉> 
-#'clojure-training-2024-extracurricular.extra01/do-character-tasks
+#'clojure-training-2024-extracurricular.extra01/get-function-from-task
 clj꞉clojure-training-2024-extracurricular.extra01꞉> 
-loop
-; Execution error (ClassCastException) at clojure-training-2024-extracurricular.extra01/eliminate-task (form-init11024214792108120588.clj:249).
-; class clojure_training_2024_extracurricular.extra01$fn__11087 cannot be cast to class clojure.lang.Associative (clojure_training_2024_extracurricular.extra01$fn__11087 is in unnamed module of loader clojure.lang.DynamicClassLoader @7f5be37d; clojure.lang.Associative is in unnamed module of loader 'app')
+#'clojure-training-2024-extracurricular.extra01/get-function-from-task
 clj꞉clojure-training-2024-extracurricular.extra01꞉> 
-#'clojure-training-2024-extracurricular.extra01/do-character-tasks
+#'clojure-training-2024-extracurricular.extra01/complete-task
 clj꞉clojure-training-2024-extracurricular.extra01꞉> 
-loop
-{:name Venti, :hp 100, :tasks [:steal :get-drunk :rest], :inventory []} lol
-loop
-{:tasks []}
+#'clojure-training-2024-extracurricular.extra01/example-person
 clj꞉clojure-training-2024-extracurricular.extra01꞉> 
-#'clojure-training-2024-extracurricular.extra01/do-character-tasks
-clj꞉clojure-training-2024-extracurricular.extra01꞉> 
-loop
-#function[clojure-training-2024-extracurricular.extra01/fn--11087] lol
-loop
-{:tasks []}
-clj꞉clojure-training-2024-extracurricular.extra01꞉> 
-; Syntax error compiling def at (d:\Projects\Coding\clojure-training-2024-extracurricular\src\clojure_training_2024_extracurricular\extra01.clj:259:18).
-; First argument to def must be a Symbol
-clj꞉clojure-training-2024-extracurricular.extra01꞉> 
-; Evaluating file: extra01.clj
-loop
-#function[clojure-training-2024-extracurricular.extra01/fn--11383]
-loop
-nil
-clj꞉clojure-training-2024-extracurricular.extra01꞉> 
-loop
-#function[clojure-training-2024-extracurricular.extra01/fn--11383]
-loop
-{:tasks []}
-clj꞉clojure-training-2024-extracurricular.extra01꞉> 
-; Evaluating file: extra01.clj
-loop
-#function[clojure-training-2024-extracurricular.extra01/fn--11473]  <- the print
-loop
-nil
-clj꞉clojure-training-2024-extracurricular.extra01꞉> 
-loop
-#function[clojure-training-2024-extracurricular.extra01/fn--11473]  <- the print
-loop
-{:tasks []}
-clj꞉clojure-training-2024-extracurricular.extra01꞉> 
-#'clojure-training-2024-extracurricular.extra01/do-character-tasks
-clj꞉clojure-training-2024-extracurricular.extra01꞉> 
-{:name "Venti", :hp 110, :tasks [], :inventory [], :wanted true, :drunk true}
-clj꞉clojure-training-2024-extracurricular.extra01꞉> 
-(true? (nil))
-; Syntax error (IllegalArgumentException) compiling at (d:\Projects\Coding\clojure-training-2024-extracurricular\.calva\output-window\output.calva-repl:112:8).
-; Can't call nil, form: (nil)
-clj꞉clojure-training-2024-extracurricular.extra01꞉> 
-#'clojure-training-2024-extracurricular.extra01/do-character-tasks
+; Syntax error compiling at (d:\Projects\Coding\clojure-training-2024-extracurricular\src\clojure_training_2024_extracurricular\extra01.clj:169:3).
+; Unable to resolve symbol: do-tasks in this context
 clj꞉clojure-training-2024-extracurricular.extra01꞉> 
 #'clojure-training-2024-extracurricular.extra01/q10
 clj꞉clojure-training-2024-extracurricular.extra01꞉> 
-[{:name "Venti", :hp 100, :tasks [:steal :get-drunk :rest], :inventory []}
- {:name "Xinqui", :hp 100, :tasks [:explore :battle :battle :rest :battle], :inventory []}
- {:name "Xiangling", :hp 100, :tasks [:cook :rest :cook :cook], :inventory []}]
+:steal
 clj꞉clojure-training-2024-extracurricular.extra01꞉> 
 #'clojure-training-2024-extracurricular.extra01/q10
 clj꞉clojure-training-2024-extracurricular.extra01꞉> 
-({:name "Venti", :hp 110, :tasks [], :inventory [], :wanted true, :drunk true}
- {:name "Xinqui", :hp 13, :tasks [], :inventory [:treasure]}
- {:name "Xiangling", :hp 110, :tasks [], :inventory [:food :food :food]})
+#function[clojure-training-2024-extracurricular.extra01/fn--11871]
+clj꞉clojure-training-2024-extracurricular.extra01꞉> 
+; Syntax error compiling at (d:\Projects\Coding\clojure-training-2024-extracurricular\src\clojure_training_2024_extracurricular\extra01.clj:174:3).
+; Unable to resolve symbol: do-tasks in this context
+clj꞉clojure-training-2024-extracurricular.extra01꞉> 
+#'clojure-training-2024-extracurricular.extra01/do-tasks
+clj꞉clojure-training-2024-extracurricular.extra01꞉> 
+(do-tasks example-person)
+{:name "Venti", :hp 110, :tasks (), :inventory [], :wanted true, :drunk true}
+clj꞉clojure-training-2024-extracurricular.extra01꞉> 
+#'clojure-training-2024-extracurricular.extra01/q10
+clj꞉clojure-training-2024-extracurricular.extra01꞉> 
+({:name "Venti", :hp 110, :tasks (), :inventory [], :wanted true, :drunk true}
+ {:name "Xinqui", :hp 13, :tasks (), :inventory [:treasure]}
+ {:name "Xiangling", :hp 110, :tasks (), :inventory [:food :food :food]})
+clj꞉clojure-training-2024-extracurricular.extra01꞉> 
+; Syntax error compiling at (d:\Projects\Coding\clojure-training-2024-extracurricular\src\clojure_training_2024_extracurricular\extra01.clj:64:8).
+; Unable to resolve symbol: id in this context
+clj꞉clojure-training-2024-extracurricular.extra01꞉> 
+{:name "Xiangling", :hp 110, :tasks (), :inventory [:food :food :food]}
+clj꞉clojure-training-2024-extracurricular.extra01꞉> 
+ (defn student? [id]
+  (if (= (get id :type) :student)
+    true
+    false))
+#'clojure-training-2024-extracurricular.extra01/student?
+clj꞉clojure-training-2024-extracurricular.extra01꞉> 
+()#'clojure-training-2024-extracurricular.extra01/q4
+clj꞉clojure-training-2024-extracurricular.extra01꞉> 
+(false false false)
 clj꞉clojure-training-2024-extracurricular.extra01꞉> 
 ; Running tests for the following namespaces:
 ;   clojure-training-2024-extracurricular.extra01
 ;   clojure-training-2024-extracurricular.extra01-test
 
-; 10 tests finished, all passing 👍, ns: 1, vars: 2
+; FAIL in clojure-training-2024-extracurricular.extra01-test/hash-map-tests (extra01_test.clj:47):
+; true q4
+; expected:
+{1001
+ {:name "John",
+  :type :student,
+  :classes #{:art :history :math},
+  :grades [43 65 23 43 56],
+  :total-grade 230},
+ 1002
+ {:name "Ross",
+  :type :student,
+  :classes #{:art :english :math :sports},
+  :grades [75 59 67 34],
+  :total-grade 235},
+ 2003 {:name "Harris", :type :teacher, :salary 50000}}
+
+; actual:
+(false false false)
+
+; 10 tests finished, problems found. 😭 errors: 0, failures: 1, ns: 1, vars: 2
+clj꞉clojure-training-2024-extracurricular.extra01꞉> 
+#'clojure-training-2024-extracurricular.extra01/q4
+clj꞉clojure-training-2024-extracurricular.extra01꞉> 
+(0 0 0)
+clj꞉clojure-training-2024-extracurricular.extra01꞉> 
+#'clojure-training-2024-extracurricular.extra01/q4
+clj꞉clojure-training-2024-extracurricular.extra01꞉> 
+(230 235 0)
+clj꞉clojure-training-2024-extracurricular.extra01꞉> 
+#'clojure-training-2024-extracurricular.extra01/q4
+clj꞉clojure-training-2024-extracurricular.extra01꞉> 
+([1001 {:name "John", :type :student, :classes #{:art :history :math}, :grades [43 65 23 43 56]}]
+ [1002 {:name "Ross", :type :student, :classes #{:art :english :math :sports}, :grades [75 59 67 34]}]
+ [2003 {:name "Harris", :type :teacher, :salary 50000}])
+clj꞉clojure-training-2024-extracurricular.extra01꞉> 
+#'clojure-training-2024-extracurricular.extra01/q4
+clj꞉clojure-training-2024-extracurricular.extra01꞉> 
+#'clojure-training-2024-extracurricular.extra01/q4
+clj꞉clojure-training-2024-extracurricular.extra01꞉> 
+#'clojure-training-2024-extracurricular.extra01/q4
+clj꞉clojure-training-2024-extracurricular.extra01꞉> 
+#'clojure-training-2024-extracurricular.extra01/q4
+clj꞉clojure-training-2024-extracurricular.extra01꞉> 
+#'clojure-training-2024-extracurricular.extra01/q4
+clj꞉clojure-training-2024-extracurricular.extra01꞉> 
+([1001 {:name "John", :type :student, :classes #{:art :history :math}, :grades [43 65 23 43 56]}]
+ [1002 {:name "Ross", :type :student, :classes #{:art :english :math :sports}, :grades [75 59 67 34]}]
+ [2003 {:name "Harris", :type :teacher, :salary 50000}])
+clj꞉clojure-training-2024-extracurricular.extra01꞉> 
+(update (first school-records) second assign-total-grades)
+; Execution error (ArityException) at clojure-training-2024-extracurricular.extra01/eval12767 (form-init11024214792108120588.clj:227).
+; Wrong number of args (2) passed to: clojure.core/update
+clj꞉clojure-training-2024-extracurricular.extra01꞉> 
+; Execution error (IllegalArgumentException) at clojure-training-2024-extracurricular.extra01/eval12773 (form-init11024214792108120588.clj:227).
+; Key must be integer
+clj꞉clojure-training-2024-extracurricular.extra01꞉> 
+(get-total-grade (first school-records))
+230
+clj꞉clojure-training-2024-extracurricular.extra01꞉> 
+(assoc (first school-records) :total-grade (get-total-grade (first school-records))
+230
+clj꞉clojure-training-2024-extracurricular.extra01꞉> 
+#function[clojure.core/assoc--5481]
+#'clojure-training-2024-extracurricular.extra01/q4
+clj꞉clojure-training-2024-extracurricular.extra01꞉> 
+([1001 {:name "John", :type :student, :classes #{:art :history :math}, :grades [43 65 23 43 56]}]
+ [1002 {:name "Ross", :type :student, :classes #{:art :english :math :sports}, :grades [75 59 67 34]}]
+ [2003 {:name "Harris", :type :teacher, :salary 50000}])
+clj꞉clojure-training-2024-extracurricular.extra01꞉> 
+#'clojure-training-2024-extracurricular.extra01/assign-total-grades
+clj꞉clojure-training-2024-extracurricular.extra01꞉> 
+([1001 {:name "John", :type :student, :classes #{:art :history :math}, :grades [43 65 23 43 56]}]
+ [1002 {:name "Ross", :type :student, :classes #{:art :english :math :sports}, :grades [75 59 67 34]}]
+ [2003 {:name "Harris", :type :teacher, :salary 50000}])
+clj꞉clojure-training-2024-extracurricular.extra01꞉> 
+#'clojure-training-2024-extracurricular.extra01/q4
+clj꞉clojure-training-2024-extracurricular.extra01꞉> 
+([1001 {:name "John", :type :student, :classes #{:art :history :math}, :grades [43 65 23 43 56]}]
+ [1002 {:name "Ross", :type :student, :classes #{:art :english :math :sports}, :grades [75 59 67 34]}]
+ [2003 {:name "Harris", :type :teacher, :salary 50000}])
+clj꞉clojure-training-2024-extracurricular.extra01꞉> 
+#'clojure-training-2024-extracurricular.extra01/q4
+clj꞉clojure-training-2024-extracurricular.extra01꞉> 
+nil
+clj꞉clojure-training-2024-extracurricular.extra01꞉> 
+#'clojure-training-2024-extracurricular.extra01/q4
+clj꞉clojure-training-2024-extracurricular.extra01꞉> 
+[1001 {:name "John", :type :student, :classes #{:art :history :math}, :grades [43 65 23 43 56]}]
+clj꞉clojure-training-2024-extracurricular.extra01꞉> 
+; Running tests for the following namespaces:
+;   clojure-training-2024-extracurricular.extra01
+;   clojure-training-2024-extracurricular.extra01-test
+
+; FAIL in clojure-training-2024-extracurricular.extra01-test/hash-map-tests (extra01_test.clj:47):
+; true q4
+; expected:
+{1001
+ {:name "John",
+  :type :student,
+  :classes #{:art :history :math},
+  :grades [43 65 23 43 56],
+  :total-grade 230},
+ 1002
+ {:name "Ross",
+  :type :student,
+  :classes #{:art :english :math :sports},
+  :grades [75 59 67 34],
+  :total-grade 235},
+ 2003 {:name "Harris", :type :teacher, :salary 50000}}
+
+; actual:
+[1001
+ {:name "John",
+  :type :student,
+  :classes #{:art :history :math},
+  :grades [43 65 23 43 56]}]
+
+; 10 tests finished, problems found. 😭 errors: 0, failures: 1, ns: 1, vars: 2
 clj꞉clojure-training-2024-extracurricular.extra01꞉> 
