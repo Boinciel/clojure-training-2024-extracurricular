@@ -1,122 +1,4 @@
-; Running all project tests…
-; FAIL in clojure-training-2024-extracurricular.core-test/a-test (core_test.clj:7):
-; FIXME, I fail.
-; expected:
-0
 
-; actual:
-1
-
-; FAIL in clojure-training-2024-extracurricular.extra01-test/hash-map-tests (extra01_test.clj:21):
-; true q2
-; expected:
-{1001
- {:name "John",
-  :type :student,
-  :classes #{:art :history :math},
-  :grades [43 65 23 43 56]},
- 1002
- {:name "Ross",
-  :type :student,
-  :classes #{:art :english :math :sports},
-  :grades [75 59 67 34]},
- 2003 {:name "Harris", :type :principle, :salary 60000}}
-
-; actual:
-nil
-
-; FAIL in clojure-training-2024-extracurricular.extra01-test/hash-map-tests (extra01_test.clj:34):
-; true q3
-; expected:
-{1001
- {:name "John",
-  :type :student,
-  :classes #{:art :history :science :math},
-  :grades [43 65 23 43 56]},
- 1002
- {:name "Ross",
-  :type :student,
-  :classes #{:art :english :math :sports},
-  :grades [75 59 67 34]},
- 2003 {:name "Harris", :type :teacher, :salary 50000}}
-
-; actual:
-nil
-
-; FAIL in clojure-training-2024-extracurricular.extra01-test/hash-map-tests (extra01_test.clj:47):
-; true q4
-; expected:
-{1001
- {:name "John",
-  :type :student,
-  :classes #{:art :history :math},
-  :grades [43 65 23 43 56],
-  :total-grade 230},
- 1002
- {:name "Ross",
-  :type :student,
-  :classes #{:art :english :math :sports},
-  :grades [75 59 67 34],
-  :total-grade 235},
- 2003 {:name "Harris", :type :teacher, :salary 50000}}
-
-; actual:
-nil
-
-; FAIL in clojure-training-2024-extracurricular.extra01-test/hash-map-tests (extra01_test.clj:62):
-; true q5
-; expected:
-{1002
- {:name "Ross",
-  :type :student,
-  :classes #{:art :english :math :sports},
-  :grades [75 59 67 34]},
- 2003 {:name "Harris", :type :teacher, :salary 50000}}
-
-; actual:
-nil
-
-; FAIL in clojure-training-2024-extracurricular.extra01-test/map-tests (extra01_test.clj:74):
-; q6
-; expected:
-(2 4 6 8 10)
-
-; actual:
-nil
-
-; FAIL in clojure-training-2024-extracurricular.extra01-test/map-tests (extra01_test.clj:77):
-; false q7
-; expected:
-("1" "2" "3" "4" "5")
-
-; actual:
-nil
-
-; ERROR in clojure-training-2024-extracurricular.extra01-test/map-tests (RT.java:84):
-; false q8
-; error: java.lang.IllegalArgumentException: Don't know how to create ISeq from: clojure_training_2024_extracurricular.extra01$q8 (RT.java:84)
-; expected:
-(=
- (seq
-  [{:name "Bob", :gender :male, "Bob" "Mister Bob"}
-   {:name "Harry", :gender :male, "Harry" "Mister Harry"}
-   {:name "Xinqui", :gender :male, "Xinqui" "Mister Xinqui"}
-   {:name "Xiangling", :gender :female, "Xiangling" "Miss Xiangling"}])
- (seq q8))
-
-; FAIL in clojure-training-2024-extracurricular.extra01-test/map-tests (extra01_test.clj:86):
-; false q9
-; expected:
-({:name "Bob", :gender :male, :job "Unemployed"}
- {:name "Harry", :gender :male, :job "Wizard"}
- {:name "Xinqui", :gender :male, :job "Support"}
- {:name "Xiangling", :gender :female, :job "Chef"})
-
-; actual:
-nil
-
-; FAIL in clojure-training-2024-extracurricular.extra01-test/map-tests (extra01_test.clj:92):
-; false q10
 ; expected:
 ({:name "Venti",
   :hp 110,
@@ -133,140 +15,121 @@ nil
 ; actual:
 nil
 
-; 11 tests finished, problems found. 😭 errors: 1, failures: 9, ns: 2, vars: 3
+; 10 tests finished, problems found. 😭 errors: 0, failures: 1, ns: 1, vars: 2
+
+
+#'clojure-training-2024-extracurricular.extra01/people2
 clj꞉clojure-training-2024-extracurricular.extra01꞉> 
-; Evaluating file: extra01_test.clj
-#'clojure-training-2024-extracurricular.extra01-test/map-tests
-clj꞉clojure-training-2024-extracurricular.extra01-test꞉> 
+(map identity people2)
+({:name "Venti", :hp 100, :tasks [:steal :get-drunk :rest], :inventory []}
+ {:name "Xinqui", :hp 100, :tasks [:explore :battle :battle :rest :battle], :inventory []}
+ {:name "Xiangling", :hp 100, :tasks [:cook :rest :cook :cook], :inventory []})
+ 
+(get task-outcomes :steal)
+#function[clojure-training-2024-extracurricular.extra01/fn--11087]
+
+(-> (first people2)
+    (get :tasks)
+    (first)
+    )
+
+(get task-outcomes (-> (first people2)
+                       (get :tasks)
+                       (first)))
+
+(update-in [character :tasks]  (rest (-> (character)
+                                         (get :tasks))))
+(-> character)
+
+
+(map get-task-function people2)
+
+#'clojure-training-2024-extracurricular.extra01/eliminate-task
+clj꞉clojure-training-2024-extracurricular.extra01꞉> 
+{:name "Venti", :hp 100, :tasks [:get-drunk :rest], :inventory []}
+clj꞉clojure-training-2024-extracurricular.extra01꞉> 
+
+(defn do-character-tasks [character]
+  (loop [character-being character]
+    (if (get-task-function character-being)
+      (recur (-> character-being
+                 (get-task-function)
+                 (eliminate-task)))
+      character-being)))#'clojure-training-2024-extracurricular.extra01/do-character-tasks
+clj꞉clojure-training-2024-extracurricular.extra01꞉> 
+; Execution error (ClassCastException) at clojure-training-2024-extracurricular.extra01/eliminate-task (form-init11024214792108120588.clj:249).
+; class clojure_training_2024_extracurricular.extra01$fn__11087 cannot be cast to class clojure.lang.Associative (clojure_training_2024_extracurricular.extra01$fn__11087 is in unnamed module of loader clojure.lang.DynamicClassLoader @7f5be37d; clojure.lang.Associative is in unnamed module of loader 'app')
+clj꞉clojure-training-2024-extracurricular.extra01꞉> 
+#'clojure-training-2024-extracurricular.extra01/do-character-tasks
+clj꞉clojure-training-2024-extracurricular.extra01꞉> 
+loop
+; Execution error (ClassCastException) at clojure-training-2024-extracurricular.extra01/eliminate-task (form-init11024214792108120588.clj:249).
+; class clojure_training_2024_extracurricular.extra01$fn__11087 cannot be cast to class clojure.lang.Associative (clojure_training_2024_extracurricular.extra01$fn__11087 is in unnamed module of loader clojure.lang.DynamicClassLoader @7f5be37d; clojure.lang.Associative is in unnamed module of loader 'app')
+clj꞉clojure-training-2024-extracurricular.extra01꞉> 
+#'clojure-training-2024-extracurricular.extra01/do-character-tasks
+clj꞉clojure-training-2024-extracurricular.extra01꞉> 
+loop
+{:name Venti, :hp 100, :tasks [:steal :get-drunk :rest], :inventory []} lol
+loop
+{:tasks []}
+clj꞉clojure-training-2024-extracurricular.extra01꞉> 
+#'clojure-training-2024-extracurricular.extra01/do-character-tasks
+clj꞉clojure-training-2024-extracurricular.extra01꞉> 
+loop
+#function[clojure-training-2024-extracurricular.extra01/fn--11087] lol
+loop
+{:tasks []}
+clj꞉clojure-training-2024-extracurricular.extra01꞉> 
+; Syntax error compiling def at (d:\Projects\Coding\clojure-training-2024-extracurricular\src\clojure_training_2024_extracurricular\extra01.clj:259:18).
+; First argument to def must be a Symbol
+clj꞉clojure-training-2024-extracurricular.extra01꞉> 
+; Evaluating file: extra01.clj
+loop
+#function[clojure-training-2024-extracurricular.extra01/fn--11383]
+loop
+nil
+clj꞉clojure-training-2024-extracurricular.extra01꞉> 
+loop
+#function[clojure-training-2024-extracurricular.extra01/fn--11383]
+loop
+{:tasks []}
+clj꞉clojure-training-2024-extracurricular.extra01꞉> 
+; Evaluating file: extra01.clj
+loop
+#function[clojure-training-2024-extracurricular.extra01/fn--11473]  <- the print
+loop
+nil
+clj꞉clojure-training-2024-extracurricular.extra01꞉> 
+loop
+#function[clojure-training-2024-extracurricular.extra01/fn--11473]  <- the print
+loop
+{:tasks []}
+clj꞉clojure-training-2024-extracurricular.extra01꞉> 
+#'clojure-training-2024-extracurricular.extra01/do-character-tasks
+clj꞉clojure-training-2024-extracurricular.extra01꞉> 
+{:name "Venti", :hp 110, :tasks [], :inventory [], :wanted true, :drunk true}
+clj꞉clojure-training-2024-extracurricular.extra01꞉> 
+(true? (nil))
+; Syntax error (IllegalArgumentException) compiling at (d:\Projects\Coding\clojure-training-2024-extracurricular\.calva\output-window\output.calva-repl:112:8).
+; Can't call nil, form: (nil)
+clj꞉clojure-training-2024-extracurricular.extra01꞉> 
+#'clojure-training-2024-extracurricular.extra01/do-character-tasks
+clj꞉clojure-training-2024-extracurricular.extra01꞉> 
+#'clojure-training-2024-extracurricular.extra01/q10
+clj꞉clojure-training-2024-extracurricular.extra01꞉> 
+[{:name "Venti", :hp 100, :tasks [:steal :get-drunk :rest], :inventory []}
+ {:name "Xinqui", :hp 100, :tasks [:explore :battle :battle :rest :battle], :inventory []}
+ {:name "Xiangling", :hp 100, :tasks [:cook :rest :cook :cook], :inventory []}]
+clj꞉clojure-training-2024-extracurricular.extra01꞉> 
+#'clojure-training-2024-extracurricular.extra01/q10
+clj꞉clojure-training-2024-extracurricular.extra01꞉> 
+({:name "Venti", :hp 110, :tasks [], :inventory [], :wanted true, :drunk true}
+ {:name "Xinqui", :hp 13, :tasks [], :inventory [:treasure]}
+ {:name "Xiangling", :hp 110, :tasks [], :inventory [:food :food :food]})
+clj꞉clojure-training-2024-extracurricular.extra01꞉> 
 ; Running tests for the following namespaces:
 ;   clojure-training-2024-extracurricular.extra01
 ;   clojure-training-2024-extracurricular.extra01-test
 
-; FAIL in clojure-training-2024-extracurricular.extra01-test/hash-map-tests (extra01_test.clj:21):
-; true q2
-; expected:
-{1001
- {:name "John",
-  :type :student,
-  :classes #{:art :history :math},
-  :grades [43 65 23 43 56]},
- 1002
- {:name "Ross",
-  :type :student,
-  :classes #{:art :english :math :sports},
-  :grades [75 59 67 34]},
- 2003 {:name "Harris", :type :principle, :salary 60000}}
-
-; actual:
-nil
-
-; FAIL in clojure-training-2024-extracurricular.extra01-test/hash-map-tests (extra01_test.clj:34):
-; true q3
-; expected:
-{1001
- {:name "John",
-  :type :student,
-  :classes #{:art :history :science :math},
-  :grades [43 65 23 43 56]},
- 1002
- {:name "Ross",
-  :type :student,
-  :classes #{:art :english :math :sports},
-  :grades [75 59 67 34]},
- 2003 {:name "Harris", :type :teacher, :salary 50000}}
-
-; actual:
-nil
-
-; FAIL in clojure-training-2024-extracurricular.extra01-test/hash-map-tests (extra01_test.clj:47):
-; true q4
-; expected:
-{1001
- {:name "John",
-  :type :student,
-  :classes #{:art :history :math},
-  :grades [43 65 23 43 56],
-  :total-grade 230},
- 1002
- {:name "Ross",
-  :type :student,
-  :classes #{:art :english :math :sports},
-  :grades [75 59 67 34],
-  :total-grade 235},
- 2003 {:name "Harris", :type :teacher, :salary 50000}}
-
-; actual:
-nil
-
-; FAIL in clojure-training-2024-extracurricular.extra01-test/hash-map-tests (extra01_test.clj:62):
-; true q5
-; expected:
-{1002
- {:name "Ross",
-  :type :student,
-  :classes #{:art :english :math :sports},
-  :grades [75 59 67 34]},
- 2003 {:name "Harris", :type :teacher, :salary 50000}}
-
-; actual:
-nil
-
-; FAIL in clojure-training-2024-extracurricular.extra01-test/map-tests (extra01_test.clj:74):
-; q6
-; expected:
-(2 4 6 8 10)
-
-; actual:
-nil
-
-; FAIL in clojure-training-2024-extracurricular.extra01-test/map-tests (extra01_test.clj:77):
-; false q7
-; expected:
-("1" "2" "3" "4" "5")
-
-; actual:
-nil
-
-; ERROR in clojure-training-2024-extracurricular.extra01-test/map-tests (RT.java:84):
-; false q8
-; error: java.lang.IllegalArgumentException: Don't know how to create ISeq from: clojure_training_2024_extracurricular.extra01$q8 (RT.java:84)
-; expected:
-(=
- (seq
-  [{:name "Mister Bob", :gender :male}
-   {:name "Mister Harry", :gender :male}
-   {:name "Mister Xinqui", :gender :male}
-   {:name "Miss Xiangling", :gender :female}])
- (seq q8))
-
-; FAIL in clojure-training-2024-extracurricular.extra01-test/map-tests (extra01_test.clj:86):
-; false q9
-; expected:
-({:name "Bob", :gender :male, :job "Unemployed"}
- {:name "Harry", :gender :male, :job "Wizard"}
- {:name "Xinqui", :gender :male, :job "Support"}
- {:name "Xiangling", :gender :female, :job "Chef"})
-
-; actual:
-nil
-
-; FAIL in clojure-training-2024-extracurricular.extra01-test/map-tests (extra01_test.clj:92):
-; false q10
-; expected:
-({:name "Venti",
-  :hp 110,
-  :tasks [],
-  :inventory [],
-  :wanted true,
-  :drunk true}
- {:name "Xinqui", :hp 13, :tasks [], :inventory [:treasure]}
- {:name "Xiangling",
-  :hp 110,
-  :tasks [],
-  :inventory [:food :food :food]})
-
-; actual:
-nil
-
-; 10 tests finished, problems found. 😭 errors: 1, failures: 8, ns: 1, vars: 2
+; 10 tests finished, all passing 👍, ns: 1, vars: 2
 clj꞉clojure-training-2024-extracurricular.extra01꞉> 
